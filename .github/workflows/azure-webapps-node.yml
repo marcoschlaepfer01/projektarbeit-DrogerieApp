@@ -1,0 +1,32 @@
+name: Deploy Marcos Fancy Zeugs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to Azure Web App
+        uses: Azure/webapps-deploy@v2
+        with:
+          app-name: wa-stgr-testing
+          publish-profile: ${{ secrets......... }}
+          slot-name: "Production"
+          package: ./Frontend/Frontend.html
+
+      - name: Verify upload
+        run: |
+          if [-f "./Frontend/Frontend.html" ]; then
+            echo "Sauber brudi"
+          else
+            echo "Porco dio"
+            exit 1
+    
