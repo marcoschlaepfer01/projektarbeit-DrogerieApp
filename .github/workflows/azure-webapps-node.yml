@@ -1,4 +1,4 @@
-name: Deploy Marcos Fancy Zeugs
+name: Deploy Marcos Code
 
 on:
   push:
@@ -22,11 +22,15 @@ jobs:
           slot-name: "Production"
           package: ./Frontend/Frontend.html
 
+  verify:
+    runs-on: windows-latest
+    needs: deploy
+
+    steps:
       - name: Verify upload
         run: |
           if [-f "./Frontend/Frontend.html" ]; then
-            echo "Sauber brudi"
+            echo "hat funktioniert"
           else
-            echo "Porco dio"
+            echo "hat nicht funktioniert"
             exit 1
-    
