@@ -1,5 +1,5 @@
 # projektarbeit-DrogerieApp
-Das ist das Repository für meine Projektarbeit Drogerie-App
+Das ist das Repository für meine Projektarbeit Drogerie-App.
 
 
 Drogerie-App
