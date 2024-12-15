@@ -12,7 +12,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DrogerieApp.ApiService\DrogerieApp.ApiService.csproj" />
+    <ProjectReference Include="..\DrogerieApp.ApiService\DrogerieApp.Backend.csproj" />
     <ProjectReference Include="..\DrogerieApp.Web\DrogerieApp.Web.csproj" />
   </ItemGroup>
 

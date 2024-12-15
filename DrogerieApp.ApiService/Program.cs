@@ -1,45 +1,48 @@
+using DrogerieApp.Backend.Clients;
+using DrogerieApp.Backend.Models;
+using Microsoft.OpenApi.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add service defaults & Aspire client integrations.
+// Add service defaults & Aspire components.
 builder.AddServiceDefaults();
 
 // Add services to the container.
 builder.Services.AddProblemDetails();
+builder.Services.AddSingleton<UmlsClient>();
+builder.Services.AddSingleton<BaseModel, GptWithToolsModel>();
+builder.Services.AddHttpClient<UmlsClient>(client => client.BaseAddress = new Uri(builder.Configuration["Urls:Umls"]!));
 
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Add services to the container.
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+
+// Add the built-in OpenAPI support
+builder.Services.AddOpenApi(options =>
+{
+    options.AddDocumentTransformer((document, context, cancellationToken) =>
+    {
+        document.Info.Title = "Drogerie App Backend";
+        document.Info.Version = "0.0.1";
+        document.Info.Contact = new OpenApiContact
+        {
+            Name = "Marco Schläpfer",
+            Email = "marco.schlaepfer@gmail.com"
+        };
+        document.Servers = [ new OpenApiServer { Url = "https://localhost:17220" } ];
+        return Task.CompletedTask;
+    });
+});
 
 var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-app.UseExceptionHandler();
-
-if (app.Environment.IsDevelopment())
+app.MapOpenApi(); 
+app.UseSwaggerUi(settings =>
 {
-    app.MapOpenApi();
-}
-
-string[] summaries = ["Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"];
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast = Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
-
-app.MapDefaultEndpoints();
-
+    settings.DocumentPath = "/openapi/v1.json";
+    settings.Path = "/openapi";
+    settings.DocumentTitle = "Drogerie App Backend UI";
+});
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

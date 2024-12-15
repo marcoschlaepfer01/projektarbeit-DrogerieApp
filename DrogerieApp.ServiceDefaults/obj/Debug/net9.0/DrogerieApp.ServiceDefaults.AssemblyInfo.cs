@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrogerieApp.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d8aa931743523616b0bc8e9bd1712aa45064c7cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7d2ef8653f96b0f544de736f116465cd8bad887d")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrogerieApp.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrogerieApp.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
