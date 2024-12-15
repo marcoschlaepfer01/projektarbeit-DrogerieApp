@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "cAIkfoRjc+c=",
+  "dgSpecHash": "AHAiQD1CtPM=",
   "success": true,
   "projectFilePath": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.ApiService\\DrogerieApp.Backend.csproj",
   "expectedPackageFiles": [
@@ -66,6 +66,7 @@
     "C:\\Users\\raffa\\.nuget\\packages\\polly.core\\8.4.2\\polly.core.8.4.2.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\polly.extensions\\8.4.2\\polly.extensions.8.4.2.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\polly.ratelimiting\\8.4.2\\polly.ratelimiting.8.4.2.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\puppeteersharp\\20.0.5\\puppeteersharp.20.0.5.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\system.clientmodel\\1.2.1\\system.clientmodel.1.2.1.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\system.diagnostics.diagnosticsource\\8.0.0\\system.diagnostics.diagnosticsource.8.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512",

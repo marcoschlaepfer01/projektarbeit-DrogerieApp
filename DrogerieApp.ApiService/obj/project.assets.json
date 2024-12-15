@@ -1128,6 +1128,22 @@
           }
         }
       },
+      "PuppeteerSharp/20.0.5": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.Logging": "8.0.0"
+        },
+        "compile": {
+          "lib/net8.0/PuppeteerSharp.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/PuppeteerSharp.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.ClientModel/1.2.1": {
         "type": "package",
         "dependencies": {
@@ -2997,6 +3013,21 @@
         "polly.ratelimiting.nuspec"
       ]
     },
+    "PuppeteerSharp/20.0.5": {
+      "sha512": "eSb/TgexCYN2pG1RMzOZNfw0CG/C5aeXP+j1U46UV9sxekoyi8atPWSF7CXXTvehAyTeDVt89t1S97MU//CPzg==",
+      "type": "package",
+      "path": "puppeteersharp/20.0.5",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net8.0/PuppeteerSharp.dll",
+        "lib/net8.0/PuppeteerSharp.xml",
+        "lib/netstandard2.0/PuppeteerSharp.dll",
+        "lib/netstandard2.0/PuppeteerSharp.xml",
+        "puppeteersharp.20.0.5.nupkg.sha512",
+        "puppeteersharp.nuspec"
+      ]
+    },
     "System.ClientModel/1.2.1": {
       "sha512": "s9+M5El+DXdCRRLzxak8uGBKWT8H/eIssGpFtpaMKdJULrQbBDPH/zFbVyHX+NDczhS5EvjHFbBH9/L+0UhmcA==",
       "type": "package",
@@ -3263,7 +3294,8 @@
       "DrogerieApp.ServiceDefaults >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 9.0.0",
       "NSwag.AspNetCore >= 14.2.0",
-      "OpenAI >= 2.1.0"
+      "OpenAI >= 2.1.0",
+      "PuppeteerSharp >= 20.0.5"
     ]
   },
   "packageFolders": {
@@ -3335,6 +3367,10 @@
           "OpenAI": {
             "target": "Package",
             "version": "[2.1.0, )"
+          },
+          "PuppeteerSharp": {
+            "target": "Package",
+            "version": "[20.0.5, )"
           }
         },
         "imports": [
