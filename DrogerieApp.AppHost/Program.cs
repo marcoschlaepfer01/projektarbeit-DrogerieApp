@@ -1,10 +1,9 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-var apiService = builder.AddProject<Projects.DrogerieApp_ApiService>("apiservice");
+var backendService = builder.AddProject<Projects.DrogerieApp_Backend>("backend");
 
-builder.AddProject<Projects.DrogerieApp_Web>("webfrontend")
+builder.AddProject<Projects.DrogerieApp_Web>("frontend")
     .WithExternalHttpEndpoints()
-    .WithReference(apiService)
-    .WaitFor(apiService);
+    .WithReference(backendService);
 
 builder.Build().Run();

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "hKzFbzWSPSA=",
+  "dgSpecHash": "cmTXMuvhwNk=",
   "success": true,
   "projectFilePath": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\DrogerieApp.Web.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,12 @@
     "C:\\Users\\raffa\\.nuget\\packages\\grpc.core.api\\2.52.0\\grpc.core.api.2.52.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\grpc.net.client\\2.52.0\\grpc.net.client.2.52.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\grpc.net.common\\2.52.0\\grpc.net.common.2.52.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.aspnetcore.authorization\\9.0.0\\microsoft.aspnetcore.authorization.9.0.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.aspnetcore.components\\9.0.0\\microsoft.aspnetcore.components.9.0.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\9.0.0\\microsoft.aspnetcore.components.analyzers.9.0.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.aspnetcore.components.forms\\9.0.0\\microsoft.aspnetcore.components.forms.9.0.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.aspnetcore.components.web\\9.0.0\\microsoft.aspnetcore.components.web.9.0.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.aspnetcore.metadata\\9.0.0\\microsoft.aspnetcore.metadata.9.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\microsoft.extensions.ambientmetadata.application\\9.0.0\\microsoft.extensions.ambientmetadata.application.9.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\microsoft.extensions.compliance.abstractions\\9.0.0\\microsoft.extensions.compliance.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\microsoft.extensions.configuration\\9.0.0\\microsoft.extensions.configuration.9.0.0.nupkg.sha512",
@@ -38,6 +44,7 @@
     "C:\\Users\\raffa\\.nuget\\packages\\microsoft.extensions.telemetry\\9.0.0\\microsoft.extensions.telemetry.9.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\microsoft.extensions.telemetry.abstractions\\9.0.0\\microsoft.extensions.telemetry.abstractions.9.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\microsoft.io.recyclablememorystream\\3.0.0\\microsoft.io.recyclablememorystream.3.0.0.nupkg.sha512",
+    "C:\\Users\\raffa\\.nuget\\packages\\microsoft.jsinterop\\9.0.0\\microsoft.jsinterop.9.0.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\opentelemetry\\1.9.0\\opentelemetry.1.9.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\opentelemetry.api\\1.9.0\\opentelemetry.api.1.9.0.nupkg.sha512",
     "C:\\Users\\raffa\\.nuget\\packages\\opentelemetry.api.providerbuilderextensions\\1.9.0\\opentelemetry.api.providerbuilderextensions.1.9.0.nupkg.sha512",

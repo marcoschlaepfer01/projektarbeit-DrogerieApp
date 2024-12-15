@@ -1,0 +1,42 @@
+﻿.human-body {
+    width: 100%;
+    max-width: 600px;
+    margin: 40px auto;
+}
+
+    .human-body svg {
+        width: 100%;
+        height: auto;
+    }
+
+        .human-body svg path {
+            fill: #57c9d5;
+        }
+
+    .human-body g {
+        cursor: pointer;
+    }
+
+        .human-body g:hover path {
+            fill: #ff7d16; /* Highlight color on hover */
+        }
+
+        /* Highlight the selected body part */
+        .human-body g.selected path {
+            fill: #ff0000; /* Highlight color for selected part */
+        }
+
+#area {
+    display: block;
+    width: 100%;
+    clear: both;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    font-family: Courier New;
+    color: #a5a5a5;
+}
+
+    #area #data {
+        color: black;
+    }

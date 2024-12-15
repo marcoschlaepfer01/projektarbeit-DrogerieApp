@@ -1,0 +1,146 @@
+﻿@page "/lindaaff-form"
+@rendermode InteractiveServer
+@using System.Net.Http.Json
+@using DrogerieApp.ClassLibrary.ContentModels.Lindaaff
+@using DrogerieApp.RazorClassLibrary.Components
+@inject BackendClient BackendClient
+
+<div class="container mt-4">
+    <h3 class="text-primary text-center mb-4">Lindaaff Form</h3>
+    <EditForm Model="content" OnValidSubmit="SubmitForm" class="shadow p-4 rounded bg-light">
+        <DataAnnotationsValidator />
+        <ValidationSummary class="alert alert-danger" />
+        <div class="row mb-4">
+            <div class="col-md-4 text-center">
+                <h5 class="mb-3">Select Body Part</h5>
+                <div class="d-flex justify-content-center">
+                    <div>
+                        <HumanBody TriggerCallback="OnBodyClicked" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Localization (Additional Info)</label>
+                        <InputText @bind-Value="content.AdditionalLocalizationNotes" class="form-control" placeholder="Enter further details about localization" />
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Intensity</label>
+                        <InputText @bind-Value="content.Intensity" class="form-control" placeholder="Rate the intensity (e.g., 1-10)" />
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Nature</label>
+                        <InputText @bind-Value="content.Nature" class="form-control" placeholder="Describe the nature of symptoms" />
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Duration</label>
+                        <InputText @bind-Value="content.Duration" class="form-control" placeholder="How long have you had these symptoms?" />
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Other Symptoms</label>
+                        <InputText @bind-Value="content.OtherSymptoms" class="form-control" placeholder="List any additional symptoms" />
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Worsening Factors</label>
+                        <InputText @bind-Value="content.WorseningFactors" class="form-control" placeholder="What makes it worse?" />
+                    </div>
+                </div>
+                <div class="row mb-3 justify-content-center">
+                    <div class="col-md-8">
+                        <label class="form-label">Alleviating Factors</label>
+                        <InputText @bind-Value="content.AlleviatingFactors" class="form-control" placeholder="What makes it better?" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
+        </div>
+    </EditForm>
+
+    @if (showStatus)
+    {
+        <div class="mt-4 p-4 bg-light rounded shadow-sm">
+            <h5 class="text-secondary">Diagnosis Result</h5>
+            @if (isLoading)
+            {
+                <div class="spinner-border text-primary me-2" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <span>Processing your request...</span>
+            }
+            else if (responseData != null)
+            {
+                <div class="row">
+                    <div class="col-3 fw-bold">Condition:</div>
+                    <div class="col-9">@responseData["condition"]</div>
+                </div>
+                <div class="row">
+                    <div class="col-3 fw-bold">Suggested Medicine:</div>
+                    <div class="col-9">@responseData["suggested_medication"]</div>
+                </div>
+                <div class="row">
+                    <div class="col-3 fw-bold">Explanation:</div>
+                    <div class="col-9">@responseData["explanation"]</div>
+                </div>
+            }
+            else
+            {
+                <p class="text-danger">No data received.</p>
+            }
+        </div>
+    }
+</div>
+
+@code {
+    private LindaaffContent content = new LindaaffContent();
+    private bool isLoading = false;
+    private bool showStatus = false;
+    private Dictionary<string, string> responseData;
+
+    private async Task SubmitForm()
+    {
+        try
+        {
+            showStatus = true;
+            isLoading = true;
+            responseData = null;
+            var result = await BackendClient.SubmitFormAsync(content);
+            responseData = new()
+            {
+                { "condition", $"{result.Condition.Name} (UMLS: {result.Condition.UmlsCode})" },
+                { "suggested_medication", $"{result.Medication.Name} (UMLS: {result.Medication.UmlsCode})" },
+                { "explanation", result.Explanation }
+            };
+        }
+        catch (Exception ex)
+        {
+            responseData = new Dictionary<string, string>
+            {
+                { "disease", "Error" },
+                { "suggested_medicine", "None" },
+                { "explanation", $"An error occurred: {ex.Message}" }
+            };
+        }
+        finally
+        {
+            isLoading = false;
+        }
+    }
+
+    private void OnBodyClicked(IEnumerable<string> selectedParts)
+    {
+        content.Localization = selectedParts;
+    }
+}
