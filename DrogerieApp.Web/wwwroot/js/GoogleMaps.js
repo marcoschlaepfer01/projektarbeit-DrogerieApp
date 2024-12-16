@@ -30,7 +30,7 @@
     window.CustomGoogleMapsJs = {
         importDynamicLibrary: importDynamicLibrary,
 
-        loadMapsApi: function ({ apiKey, version = "quarterly", libraries = "maps", language = "de", region = "CH" }) {
+        loadMapsApi: function ({ apiKey, version = "quarterly", libraries = "places,marker", language = "de", region = "CH" }) {
             this.importDynamicLibrary({
                 key: apiKey,
                 v: version,
@@ -44,7 +44,7 @@
 
         initMapAsync: async function ({
             elementId = "map",
-            mapId = "4504f8b37365c3d0",
+            mapId = "4504f8b37309c3d0",
             center = { lat: 47.4185, lng: 9.353 },
             zoom = 10,
             controls = {}
@@ -56,6 +56,54 @@
                 mapId,
                 ...controls
             });
+        },
+
+        searchAsync: async function ({
+            location = { lat: 47.4185, lng: 9.353 },
+            radius = 5000,
+            includedPrimaryTypes = ["drugstore"]
+        } = {}) {
+            const { Place, SearchNearbyRankPreference } = await google.maps.importLibrary("places");
+            const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
+            const request = {
+                fields: ["displayName", "location", "businessStatus", "photos", "adrFormatAddress"],
+                locationRestriction: {
+                    center: location,
+                    radius: radius
+                },
+                includedPrimaryTypes: includedPrimaryTypes
+            };
+            const { places } = await Place.searchNearby(request)
+            const infoWindow = new google.maps.InfoWindow({ name: "" });
+            if (places.length) {
+                const { LatLngBounds } = await google.maps.importLibrary("core");
+                const bounds = new LatLngBounds();
+
+                // Loop through and get all the results.
+                places.forEach((place) => {
+                    const marker = new AdvancedMarkerElement({
+                        map: this.map,
+                        position: place.location,
+                        title: place.displayName,
+                        gmpClickable: true
+                    });
+                    marker.addListener("click", ({ domEvent, latLng }) => {
+                        infoWindow.close();
+                        infoWindow.setContent(marker.title);
+                        infoWindow.open(marker.map, marker);
+                    });
+                    bounds.extend(place.location);
+                });
+                this.map.fitBounds(bounds);
+                const simpleResults = places.map(r => ({
+                    Name: r.displayName,
+                    Location: r.location,
+                    Status: r.businessStatus,
+                    Photo: r.photos[0],
+                    Address: r.adrFormatAddress
+                }));
+                return simpleResults;
+            }
         }
     };
 })();

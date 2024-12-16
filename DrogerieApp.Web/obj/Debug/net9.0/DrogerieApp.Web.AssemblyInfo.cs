@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DrogerieApp.Web")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a0bf4afaacdf1974a57d07a3e8efcf1509e58bd4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df17e30b2939b70b2abb47bb56895baaec29d87a")]
 [assembly: System.Reflection.AssemblyProductAttribute("DrogerieApp.Web")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DrogerieApp.Web")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

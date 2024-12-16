@@ -1,4 +1,5 @@
 ﻿@page "/map"
+@using DrogerieApp.ClassLibrary.Maps
 @using DrogerieApp.Web
 @rendermode InteractiveServer
 @inject IJSRuntime Runtime
@@ -23,6 +24,12 @@
                 mapId = "4504f8b37365c3d0",
                 center = new { lat = 47.4185, lng = 9.353 },
                 zoom = 14
+            });
+            List<PlaceResult> results = await Runtime.SearchAsync(args: new
+            {
+                location = new { lat = 47.4185, lng = 9.353 },
+                radius = 5000,
+                includedPrimaryTypes = new string[] { "drugstore" }
             });
         }
     }

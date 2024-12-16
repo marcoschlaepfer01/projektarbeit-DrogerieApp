@@ -3,32 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\pages\\map.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\pages\\map.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{113EC096-6FA0-4FAB-8D49-635EA32784F3}|DrogerieApp.ClassLibrary\\DrogerieApp.ClassLibrary.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.classlibrary\\maps\\placeresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{113EC096-6FA0-4FAB-8D49-635EA32784F3}|DrogerieApp.ClassLibrary\\DrogerieApp.ClassLibrary.csproj|solutionrelative:drogerieapp.classlibrary\\maps\\placeresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\wwwroot\\js\\googlemaps.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\wwwroot\\js\\googlemaps.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\pages\\map.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\pages\\map.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\routes.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\wwwroot\\js\\googlemaps.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\wwwroot\\js\\googlemaps.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\pages\\home.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\components\\pages\\lindaaffform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\components\\pages\\lindaaffform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|c:\\users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-drogerieapp\\drogerieapp.web\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{34EE4DB7-A335-4F2E-8826-EE74D51CB588}|DrogerieApp.Web\\DrogerieApp.Web.csproj|solutionrelative:drogerieapp.web\\extensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,24 +42,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GoogleMaps.js",
-              "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
-              "RelativeDocumentMoniker": "DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
-              "ToolTip": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
-              "RelativeToolTip": "DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
-              "ViewState": "AgIAAAoAAAAAMzMzMzPrvzMAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2024-12-16T14:09:44.12Z",
+              "DocumentIndex": 0,
+              "Title": "PlaceResult.cs",
+              "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.ClassLibrary\\Maps\\PlaceResult.cs",
+              "RelativeDocumentMoniker": "DrogerieApp.ClassLibrary\\Maps\\PlaceResult.cs",
+              "ToolTip": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.ClassLibrary\\Maps\\PlaceResult.cs",
+              "RelativeToolTip": "DrogerieApp.ClassLibrary\\Maps\\PlaceResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-16T16:44:45.765Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "App.razor",
               "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\Components\\App.razor",
               "RelativeDocumentMoniker": "DrogerieApp.Web\\Components\\App.razor",
@@ -94,7 +98,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Home.razor",
               "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\Components\\Pages\\Home.razor",
               "RelativeDocumentMoniker": "DrogerieApp.Web\\Components\\Pages\\Home.razor",
@@ -107,28 +111,47 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "Extensions.cs",
               "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\Extensions.cs",
               "RelativeDocumentMoniker": "DrogerieApp.Web\\Extensions.cs",
               "ToolTip": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\Extensions.cs",
               "RelativeToolTip": "DrogerieApp.Web\\Extensions.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-16T13:45:43.886Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Map.razor",
               "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\Components\\Pages\\Map.razor",
               "RelativeDocumentMoniker": "DrogerieApp.Web\\Components\\Pages\\Map.razor",
               "ToolTip": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\Components\\Pages\\Map.razor",
               "RelativeToolTip": "DrogerieApp.Web\\Components\\Pages\\Map.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-12-16T13:24:45.566Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GoogleMaps.js",
+              "DocumentMoniker": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
+              "RelativeDocumentMoniker": "DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
+              "ToolTip": "C:\\Users\\raffa\\source\\repos\\marcoschlaepfer01\\projektarbeit-DrogerieApp\\DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
+              "RelativeToolTip": "DrogerieApp.Web\\wwwroot\\js\\GoogleMaps.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD4AAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2024-12-16T14:09:44.12Z",
               "EditorCaption": ""
             }
           ]
