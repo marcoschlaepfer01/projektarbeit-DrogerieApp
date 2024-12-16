@@ -1,0 +1,29 @@
+﻿@page "/map"
+@using DrogerieApp.Web
+@rendermode InteractiveServer
+@inject IJSRuntime Runtime
+
+<PageTitle>Map</PageTitle>
+
+<div style="width: 100%; height: 800px;">
+    <div id="@ElementId" style="height: 100%; width: 100%;"></div>
+</div>
+
+@code {
+    private string ElementId { get; set; } = "map";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await Runtime.LoadGoogleMapsApiAsync();
+            await Runtime.InitGoogleMapsAsync(args: new
+            {
+                elementId = "map",
+                mapId = "4504f8b37365c3d0",
+                center = new { lat = 47.4185, lng = 9.353 },
+                zoom = 14
+            });
+        }
+    }
+}
