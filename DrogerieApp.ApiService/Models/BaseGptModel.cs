@@ -9,8 +9,8 @@ public abstract class BaseGptModel : BaseModel
     protected readonly ChatResponseFormat _responseFormat;
     protected readonly SystemChatMessage _systemChatMessage;
 
-    public BaseGptModel(ILogger logger, IConfiguration config, JsonSerializerOptions? jsonSerializerOptions = null, HttpClient httpClient = null)
-        : base(logger, config, jsonSerializerOptions, httpClient)
+    public BaseGptModel(ILogger logger, IConfiguration config, HttpClient httpClient, JsonSerializerOptions? jsonSerializerOptions = null)
+        : base(logger, config, httpClient, jsonSerializerOptions)
     {
         _client = new ChatClient(model: "gpt-4o", _config.GetValue<string>("OPENAI_API_KEY"));
         _responseFormat = InitChatResponseFormat();
@@ -47,16 +47,16 @@ public abstract class BaseGptModel : BaseModel
                                         "Indication": { "type": "string" },
                                         "ContraIndication": { "type": "string" },
                                         "NarcoticCode": { "type": "string" },
-                                        "ImageUrl": { "type": "string" }
+                                        "ImageUrl": { "type": "string" },
+                                        "Url": { "type": "string" }
                                     },
-                                    "required": ["Name", "Characteristics", "Atc", "Dose", "Indication", "ContraIndication", "NarcoticCode", "ImageUrl"],
+                                    "required": ["Name", "Characteristics", "Atc", "Dose", "Indication", "ContraIndication", "NarcoticCode", "ImageUrl", "Url"],
                                     "additionalProperties": false
                                 },
-                                "Url": { "type": "string" },
                                 "UmlsCode": { "type": "string" },
                                 "Description": { "type": "string" }
                             },
-                            "required": ["MedicationDetails", "Url", "UmlsCode", "Description"],
+                            "required": ["MedicationDetails", "UmlsCode", "Description"],
                             "additionalProperties": false
                         },
                         "condition": {
@@ -66,7 +66,7 @@ public abstract class BaseGptModel : BaseModel
                                 "UmlsCode": { "type": "string" },
                                 "Description": { "type": "string" }
                             },
-                            "required": ["Name", "Description"],
+                            "required": ["Name", "UmlsCode", "Description"],
                             "additionalProperties": false
                         },
                         "explanation": { "type": "string" }

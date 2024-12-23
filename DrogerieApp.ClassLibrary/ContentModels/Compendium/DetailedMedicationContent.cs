@@ -10,4 +10,5 @@ public class DetailedMedicationContent
     public string ContraIndication { get; set; } = string.Empty;
     public string NarcoticCode { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
+    public string Url { get; set; } = string.Empty;
 }

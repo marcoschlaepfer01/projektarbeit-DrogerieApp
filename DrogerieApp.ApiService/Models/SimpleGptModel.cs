@@ -6,7 +6,7 @@ namespace DrogerieApp.Backend.Models;
 
 public class SimpleGptModel : BaseGptModel
 {
-    public SimpleGptModel(ILogger<SimpleGptModel> logger, IConfiguration config) : base(logger, config) { }
+    public SimpleGptModel(ILogger<SimpleGptModel> logger, IConfiguration config) : base(logger, config, default) { }
 
     public async override Task<GptResponseContent> ProcessAsync(LindaaffContent lindaaffModel)
     {

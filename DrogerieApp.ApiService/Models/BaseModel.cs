@@ -10,7 +10,7 @@ public abstract class BaseModel
     protected readonly JsonSerializerOptions _jsonSerializerOptions;
     protected readonly HttpClient _httpClient;
 
-    public BaseModel(ILogger logger, IConfiguration config, JsonSerializerOptions? jsonSerializerOptions = null, HttpClient httpClient = null)
+    public BaseModel(ILogger logger, IConfiguration config, HttpClient httpClient, JsonSerializerOptions? jsonSerializerOptions = null)
     {
         _logger = logger;
         _config = config;

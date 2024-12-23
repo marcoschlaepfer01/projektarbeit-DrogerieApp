@@ -7,15 +7,15 @@ namespace DrogerieApp.Backend.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class CompediumController : ControllerBase
+public class CompendiumController : ControllerBase
 {
     // A static, lazily-initialized browser instance for efficiency
     private static readonly Task<IBrowser> _browserTask = InitializeBrowserAsync();
 
-    private readonly ILogger<CompediumController> _logger;
+    private readonly ILogger<CompendiumController> _logger;
     private readonly string _baseAddress;
 
-    public CompediumController(ILogger<CompediumController> logger, IConfiguration config)
+    public CompendiumController(ILogger<CompendiumController> logger, IConfiguration config)
     {
         _logger = logger;
         _baseAddress = config["Urls:Compendium"] ?? string.Empty;
@@ -30,6 +30,7 @@ public class CompediumController : ControllerBase
         await fetcher.DownloadAsync().ConfigureAwait(false);
         return await Puppeteer.LaunchAsync(new LaunchOptions
         {
+            Timeout = 120000,
             Headless = true,
             Args = new[] { "--no-sandbox", "--disable-setuid-sandbox" }
         }).ConfigureAwait(false);
@@ -91,8 +92,7 @@ public class CompediumController : ControllerBase
         }
 
         // Deserialize the JSON extracted from page evaluation
-        var medicaments = System.Text.Json.JsonSerializer.Deserialize<List<MedicationContent>>(jsonResult)
-                          ?? new List<MedicationContent>();
+        var medicaments = JsonSerializer.Deserialize<List<MedicationContent>>(jsonResult) ?? new List<MedicationContent>();
 
         // Return a JSON result (ASP.NET Core automatically serializes objects returned with Ok(...))
         return Ok(medicaments);
@@ -102,45 +102,93 @@ public class CompediumController : ControllerBase
     public async Task<IActionResult> GetMedicamentDetails([FromQuery] string url)
     {
         if (string.IsNullOrWhiteSpace(url))
-            return BadRequest("Parameter 'name' is required.");
+            return BadRequest("Parameter 'url' is required."); // minor fix: say 'url'
+
         string jsonResult;
         try
         {
             var browser = await _browserTask.ConfigureAwait(false);
             using var page = await browser.NewPageAsync().ConfigureAwait(false);
-            await page.GoToAsync(url, WaitUntilNavigation.Networkidle0).ConfigureAwait(false);
-            jsonResult = await page.EvaluateFunctionAsync<string>(@"
-                    () => {
-                        const container = document.querySelector('div[id=""productDetail""]');
-                        if(!container) return ""What the hell"";
 
-                        const name = document.querySelector('span[itemprop=""name""]')
-                        const imageUrl = document.querySelector('img[itemprop=""image""]')
-                        const characteristics = container.querySelector('span[title=""Product.Characteristics""]').closest('.row')
-                        const atc = container.querySelector('span[title=""ATC""]').closest('.row')
-                        const indication = container.querySelector('span[title=""Indikation""]').closest('.row')
-                        const dose = container.querySelector('span[title=""Dosierung""]').closest('.row')
-                        const contraIndication = container.querySelector('span[title=""Kontraindikation""]').closest('.row')
-                        const narcoticCode = container.querySelector('div[class=""col-6 col-lg-3 text-sm-center narcoticCode""]')
-                        return JSON.stringify({
-                            Name: name.innerText.trim(),
-                            ImageUrl: imageUrl.src,
-                            Characteristics: characteristics.querySelector('div[class=""col-lg-18""]').innerText.trim(),
-                            Atc: atc.querySelector('div[class=""col-lg-18""]').innerText.trim(),
-                            Indication: indication.querySelector('div[class=""col-lg-18""]').innerText.trim(),
-                            Dose: dose.querySelector('div[class=""col-lg-18""]').innerText.trim(),
-                            ContraIndication: contraIndication.querySelector('div[class=""col-lg-18""]').innerText.trim(),
-                            NarcoticCode: narcoticCode.innerText.trim()
-                        });
-                    }
-                ").ConfigureAwait(false);
+            // Navigate
+            await page.GoToAsync(url, WaitUntilNavigation.Networkidle0).ConfigureAwait(false);
+
+            // Evaluate with defensive checks:
+            jsonResult = await page.EvaluateFunctionAsync<string>(@"
+            () => {
+                const container = document.querySelector('div[id=""productDetail""]');
+                if (!container) {
+                    return JSON.stringify({
+                        Name: '',
+                        ImageUrl: '',
+                        Characteristics: '',
+                        Atc: '',
+                        Indication: '',
+                        Dose: '',
+                        ContraIndication: '',
+                        NarcoticCode: ''
+                    });
+                }
+
+                // Optional chaining or null checks
+                const nameEl = document.querySelector('span[itemprop=""name""]');
+                const imageEl = document.querySelector('img[itemprop=""image""]');
+                const characteristicsEl = container.querySelector('span[title=""Product.Characteristics""]')?.closest('.row');
+                const atcEl = container.querySelector('span[title=""ATC""]')?.closest('.row');
+                const indicationEl = container.querySelector('span[title=""Indikation""]')?.closest('.row');
+                const doseEl = container.querySelector('span[title=""Dosierung""]')?.closest('.row');
+                const contraEl = container.querySelector('span[title=""Kontraindikation""]')?.closest('.row');
+                
+                // Narcotic code might be in different spots:
+                let narcoticEl = container.querySelector('div[class=""col-6 col-lg-3 text-sm-center ""]');
+                if (!narcoticEl) {
+                    narcoticEl = container.querySelector('div[class=""col-6 col-lg-3 text-sm-center narcoticCode""]');
+                }
+
+                // Now safely extract text or fallback to empty string
+                const name = nameEl ? nameEl.innerText.trim() : '';
+                const imageUrl = imageEl ? imageEl.src : '';
+                const characteristics = characteristicsEl 
+                    ? characteristicsEl.querySelector('div[class=""col-lg-18""]')?.innerText.trim() 
+                    : '';
+                const atc = atcEl 
+                    ? atcEl.querySelector('div[class=""col-lg-18""]')?.innerText.trim()
+                    : '';
+                const indication = indicationEl 
+                    ? indicationEl.querySelector('div[class=""col-lg-18""]')?.innerText.trim()
+                    : '';
+                const dose = doseEl 
+                    ? doseEl.querySelector('div[class=""col-lg-18""]')?.innerText.trim()
+                    : '';
+                const contraIndication = contraEl 
+                    ? contraEl.querySelector('div[class=""col-lg-18""]')?.innerText.trim()
+                    : '';
+                const narcoticCode = narcoticEl ? narcoticEl.innerText.trim() : '';
+
+                const result = {
+                    Name: name,
+                    ImageUrl: imageUrl,
+                    Characteristics: characteristics || '',
+                    Atc: atc || '',
+                    Indication: indication || '',
+                    Dose: dose || '',
+                    ContraIndication: contraIndication || '',
+                    NarcoticCode: narcoticCode || ''
+                };
+                
+                return JSON.stringify(result);
+            }
+        ").ConfigureAwait(false);
         }
         catch (Exception ex)
         {
             _logger.LogError(ex, "Error fetching the page");
             return StatusCode(500, $"Error fetching the page: {ex.Message}");
         }
+
         var result = JsonSerializer.Deserialize<DetailedMedicationContent>(jsonResult) ?? new();
+        result.Url = url;
         return Ok(result);
     }
+
 }

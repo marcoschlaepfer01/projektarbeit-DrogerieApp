@@ -9,7 +9,7 @@ public class BackendClient(HttpClient _httpClient, ILogger<BackendClient> _logge
     {
         try
         {
-            var response = await _httpClient.PostAsJsonAsync("api/Lindaaff/ProcessLindaaffContent", content);
+            var response = await _httpClient.PostAsJsonAsync("api/Lindaaff/ProcessLindaaffContent", content).ConfigureAwait(false);
             response.EnsureSuccessStatusCode();
 
             var result = await response.Content.ReadFromJsonAsync<GptResponseContent>() ?? new();

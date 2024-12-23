@@ -10,6 +10,7 @@
     <EditForm Model="content" OnValidSubmit="SubmitForm" class="shadow p-4 rounded bg-light">
         <DataAnnotationsValidator />
         <ValidationSummary class="alert alert-danger" />
+
         <div class="row mb-4">
             <div class="col-md-4 text-center">
                 <h5 class="mb-3">Select Body Part</h5>
@@ -64,6 +65,7 @@
                 </div>
             </div>
         </div>
+
         <div class="d-flex justify-content-center">
             <button type="submit" class="btn btn-primary btn-lg px-5">Submit</button>
         </div>
@@ -82,14 +84,76 @@
             }
             else if (responseData != null)
             {
-                <div class="row">
+                <!-- Condition Overview -->
+                <div class="row mb-2">
                     <div class="col-3 fw-bold">Condition:</div>
-                    <div class="col-9">@responseData["condition"]</div>
+                    <div class="col-9">
+                        @responseData["conditionName"]
+                        @if (responseData.ContainsKey("conditionUmlsCode") && !string.IsNullOrWhiteSpace(responseData["conditionUmlsCode"]))
+                        {
+                            <span class="text-muted">(UMLS: @responseData["conditionUmlsCode"])</span>
+                        }
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="col-3 fw-bold">Suggested Medicine:</div>
-                    <div class="col-9">@responseData["suggested_medication"]</div>
+                <div class="row mb-3">
+                    <div class="col-3 fw-bold">Condition Description:</div>
+                    <div class="col-9">@responseData["conditionDescription"]</div>
                 </div>
+
+                <hr />
+
+                <!-- Medication -->
+                <h5>Medication</h5>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Name:</div>
+                    <div class="col-9">
+                        <a href="@responseData["medicationUrl"]" target="_blank">
+                            @responseData["medicationName"]
+                        </a>
+                        @if (responseData.ContainsKey("medicationUmlsCode") && !string.IsNullOrWhiteSpace(responseData["medicationUmlsCode"]))
+                        {
+                            <span class="text-muted">(UMLS: @responseData["medicationUmlsCode"])</span>
+                        }
+                    </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Description:</div>
+                    <div class="col-9">@responseData["medicationDescription"]</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Characteristics:</div>
+                    <div class="col-9">@responseData["medicationCharacteristics"]</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">ATC Code:</div>
+                    <div class="col-9">@responseData["medicationAtc"]</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Dose:</div>
+                    <div class="col-9">@responseData["medicationDose"]</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Indication:</div>
+                    <div class="col-9">@responseData["medicationIndication"]</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Contra-Indication:</div>
+                    <div class="col-9">@responseData["medicationContraIndication"]</div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col-3 fw-bold">Narcotic Code:</div>
+                    <div class="col-9">@responseData["medicationNarcoticCode"]</div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-3 fw-bold">Medication Image:</div>
+                    <div class="col-9">
+                        <img src="@responseData["medicationImageUrl"]" alt="Medication image" style="max-width: 150px;" />
+                    </div>
+                </div>
+
+                <hr />
+
+                <!-- Explanation -->
                 <div class="row">
                     <div class="col-3 fw-bold">Explanation:</div>
                     <div class="col-9">@responseData["explanation"]</div>
@@ -108,34 +172,75 @@
     private bool isLoading = false;
     private bool showStatus = false;
     private Dictionary<string, string> responseData;
+    private SemaphoreSlim semaphore = new SemaphoreSlim(1);
 
     private async Task SubmitForm()
     {
+        await semaphore.WaitAsync();
         try
         {
             showStatus = true;
             isLoading = true;
             responseData = null;
+
+            // Call the new (more powerful) backend method
             var result = await BackendClient.SubmitFormAsync(content);
+
+            // Map the new result object into a Dictionary
             responseData = new()
             {
-                { "condition", $"{result.Condition.Name} (UMLS: {result.Condition.UmlsCode})" },
-                { "suggested_medication", $"{result.Medication.MedicationDetails.Name} (UMLS: {result.Medication.UmlsCode})" },
+                // Condition
+                { "conditionName", result.Condition.Name },
+                { "conditionUmlsCode", result.Condition.UmlsCode ?? string.Empty },
+                { "conditionDescription", result.Condition.Description },
+
+                // Medication
+                { "medicationName", result.Medication.MedicationDetails.Name },
+                { "medicationUrl", result.Medication.MedicationDetails.Url },
+                { "medicationUmlsCode", result.Medication.UmlsCode ?? string.Empty },
+                { "medicationDescription", result.Medication.Description },
+                { "medicationCharacteristics", result.Medication.MedicationDetails.Characteristics },
+                { "medicationAtc", result.Medication.MedicationDetails.Atc },
+                { "medicationDose", result.Medication.MedicationDetails.Dose },
+                { "medicationIndication", result.Medication.MedicationDetails.Indication },
+                { "medicationContraIndication", result.Medication.MedicationDetails.ContraIndication },
+                { "medicationNarcoticCode", result.Medication.MedicationDetails.NarcoticCode },
+                { "medicationImageUrl", result.Medication.MedicationDetails.ImageUrl },
+
+                // Explanation from the backend
                 { "explanation", result.Explanation }
             };
         }
         catch (Exception ex)
         {
-            responseData = new Dictionary<string, string>
+            responseData = new()
             {
-                { "disease", "Error" },
-                { "suggested_medicine", "None" },
-                { "explanation", $"An error occurred: {ex.Message}" }
+                // Condition
+                { "conditionName", "Error" },
+                { "conditionUmlsCode", string.Empty },
+                { "conditionDescription", string.Empty },
+
+                // Medication
+                { "medicationName", string.Empty },
+                { "medicationUrl", string.Empty },
+                { "medicationUmlsCode", string.Empty },
+                { "medicationDescription", string.Empty },
+                { "medicationCharacteristics", string.Empty },
+                { "medicationAtc", string.Empty },
+                { "medicationDose", string.Empty },
+                { "medicationIndication", string.Empty },
+                { "medicationContraIndication", string.Empty },
+                { "medicationNarcoticCode", string.Empty },
+                { "medicationImageUrl", string.Empty },
+
+                // Explanation from the backend
+                { "explanation", $"An error occured: {ex.Message}" }
             };
         }
         finally
         {
             isLoading = false;
+            semaphore.Release();
         }
     }
 

@@ -2,6 +2,7 @@ using DrogerieApp.Backend.Clients;
 using DrogerieApp.Backend.Models;
 using Microsoft.OpenApi.Models;
 
+var url = "https://localhost:17220";
 var builder = WebApplication.CreateBuilder(args);
 
 // Add service defaults & Aspire components.
@@ -10,9 +11,15 @@ builder.AddServiceDefaults();
 // Add services to the container.
 builder.Services.AddProblemDetails();
 builder.Services.AddSingleton<UmlsClient>();
-builder.Services.AddSingleton<BaseModel, GptWithToolsModel>();
+builder.Services.AddRequestTimeouts(options =>
+{
+    options.DefaultPolicy = new Microsoft.AspNetCore.Http.Timeouts.RequestTimeoutPolicy
+    {
+        Timeout = new(0, 2, 0)
+    };
+});
 builder.Services.AddHttpClient<UmlsClient>(client => client.BaseAddress = new Uri(builder.Configuration["Urls:Umls"]!));
-builder.Services.AddHttpClient<GptWithToolsModel>(client => client.BaseAddress = new("https+http://backend"));
+builder.Services.AddHttpClient<BaseModel, GptWithToolsModel>(client => client.BaseAddress = new(url));
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -30,7 +37,7 @@ builder.Services.AddOpenApi(options =>
             Name = "Marco Schläpfer",
             Email = "marco.schlaepfer@gmail.com"
         };
-        document.Servers = [ new OpenApiServer { Url = "https://localhost:17220" } ];
+        document.Servers = [ new OpenApiServer { Url = url } ];
         return Task.CompletedTask;
     });
 });
