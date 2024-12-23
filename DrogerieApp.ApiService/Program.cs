@@ -12,6 +12,7 @@ builder.Services.AddProblemDetails();
 builder.Services.AddSingleton<UmlsClient>();
 builder.Services.AddSingleton<BaseModel, GptWithToolsModel>();
 builder.Services.AddHttpClient<UmlsClient>(client => client.BaseAddress = new Uri(builder.Configuration["Urls:Umls"]!));
+builder.Services.AddHttpClient<GptWithToolsModel>(client => client.BaseAddress = new("https+http://backend"));
 
 // Add services to the container.
 builder.Services.AddControllers();

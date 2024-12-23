@@ -120,7 +120,7 @@
             responseData = new()
             {
                 { "condition", $"{result.Condition.Name} (UMLS: {result.Condition.UmlsCode})" },
-                { "suggested_medication", $"{result.Medication.Name} (UMLS: {result.Medication.UmlsCode})" },
+                { "suggested_medication", $"{result.Medication.MedicationDetails.Name} (UMLS: {result.Medication.UmlsCode})" },
                 { "explanation", result.Explanation }
             };
         }

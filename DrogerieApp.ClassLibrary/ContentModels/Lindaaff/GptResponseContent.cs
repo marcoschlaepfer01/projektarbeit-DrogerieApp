@@ -1,4 +1,6 @@
-﻿namespace DrogerieApp.ClassLibrary.ContentModels.Lindaaff;
+﻿using DrogerieApp.ClassLibrary.ContentModels.Compendium;
+
+namespace DrogerieApp.ClassLibrary.ContentModels.Lindaaff;
 
 public class GptResponseContent
 {

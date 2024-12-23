@@ -8,8 +8,9 @@ public abstract class BaseModel
     protected readonly ILogger _logger;
     protected readonly IConfiguration _config;
     protected readonly JsonSerializerOptions _jsonSerializerOptions;
+    protected readonly HttpClient _httpClient;
 
-    public BaseModel(ILogger logger, IConfiguration config, JsonSerializerOptions? jsonSerializerOptions = null)
+    public BaseModel(ILogger logger, IConfiguration config, JsonSerializerOptions? jsonSerializerOptions = null, HttpClient httpClient = null)
     {
         _logger = logger;
         _config = config;
@@ -18,6 +19,7 @@ public abstract class BaseModel
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             PropertyNameCaseInsensitive = true
         };
+        _httpClient = httpClient;
     }
 
     public abstract Task<GptResponseContent> ProcessAsync(LindaaffContent model);
